@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3677195752684280097}
   - component: {fileID: 6875381920419757918}
   - component: {fileID: 1587648084701199668}
+  - component: {fileID: 3738181227558119247}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -144,7 +145,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -207,6 +208,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 24c052ba7e2db304696a436c1d715f04, type: 3}
   - {fileID: 21300000, guid: 6bf9530ecd83c664099aa71dd0a5223e, type: 3}
   - {fileID: 21300000, guid: 3c91ca5ea46cd97409cdc7acb86e3523, type: 3}
+  danger: {r: 1, g: 0.3915094, b: 0.3915094, a: 1}
+  safe: {r: 1, g: 1, b: 1, a: 1}
 --- !u!120 &1587648084701199668
 LineRenderer:
   serializedVersion: 2
@@ -311,3 +314,38 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!58 &3738181227558119247
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5499348625247542464}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.21133333}
+  serializedVersion: 2
+  m_Radius: 0.7

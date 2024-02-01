@@ -17,6 +17,8 @@ public class Plane : MonoBehaviour
     float timerValue;
     SpriteRenderer spriteRenderer;
     public Sprite[] sprites;
+    public Color danger;
+    public Color safe;
 
     private void Start()
     {
@@ -32,6 +34,8 @@ public class Plane : MonoBehaviour
         transform.Rotate(0, 0, Random.Range(-180f, 180f));
         speed = Random.Range(1, 3);
         spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];
+        spriteRenderer.color = safe;
+        
     }
 
     private void FixedUpdate()
@@ -92,6 +96,32 @@ public class Plane : MonoBehaviour
         }
         
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        spriteRenderer.color = danger;
+        
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        GameObject planeToCheck = collision.gameObject;
+        if (Vector2.Distance(planeToCheck.transform.position, transform.position) < pointThreshold)
+        {
+            Destroy(planeToCheck);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        spriteRenderer.color = safe;
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 
 }
