@@ -19,6 +19,7 @@ public class Plane : MonoBehaviour
     public Sprite[] sprites;
     public Color danger;
     public Color safe;
+    
 
     private void Start()
     {
@@ -52,16 +53,16 @@ public class Plane : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            timerValue += 0.5f * Time.deltaTime;
-            float interpolation = landing.Evaluate(timerValue);
-            if(transform.localScale.z < 0.1)
-            {
-                Destroy(gameObject);
-            }
-            transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, interpolation);
-        }
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    timerValue += 0.5f * Time.deltaTime;
+        //    float interpolation = landing.Evaluate(timerValue);
+        //    if(transform.localScale.z < 0.1)
+        //    {
+        //        Destroy(gameObject);
+        //    }
+        //    transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, interpolation);
+        //}
         lineRenderer.SetPosition(0, transform.position);
         if(points.Count > 0)
         {
@@ -100,17 +101,35 @@ public class Plane : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        spriteRenderer.color = danger;
+        if(collision.gameObject.layer != 3)
+        {
+            spriteRenderer.color = danger;
+        }
+        
         
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         GameObject planeToCheck = collision.gameObject;
-        if (Vector2.Distance(planeToCheck.transform.position, transform.position) < pointThreshold)
+        
+        if (Vector2.Distance(planeToCheck.transform.position, transform.position) < pointThreshold * 2 && planeToCheck.layer != 3)
         {
             Destroy(planeToCheck);
             Destroy(gameObject);
+        }
+
+        if(planeToCheck.layer == 3)
+        {
+            timerValue += 0.5f * Time.deltaTime;
+            float interpolation = landing.Evaluate(timerValue);
+            if (transform.localScale.z < 0.2)
+            {
+                Debug.Log("Score +1!");
+                Destroy(gameObject);
+                
+            }
+            transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, interpolation);
         }
     }
 
