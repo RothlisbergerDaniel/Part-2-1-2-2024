@@ -10,6 +10,7 @@ public class Knight : MonoBehaviour
     public float speed = 3;
     Rigidbody2D rb;
     Animator animator;
+    bool clickOnSelf = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,7 @@ public class Knight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && !clickOnSelf)
         {
             destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
@@ -37,5 +38,16 @@ public class Knight : MonoBehaviour
         }
 
         rb.MovePosition(rb.position + movement.normalized * speed * Time.deltaTime);
+    }
+
+    private void OnMouseDown()
+    {
+        clickOnSelf = true;
+        animator.SetTrigger("Damage");
+    }
+
+    private void OnMouseUp()
+    {
+        clickOnSelf = false;
     }
 }
