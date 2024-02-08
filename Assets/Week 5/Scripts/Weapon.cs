@@ -17,7 +17,11 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if(timer > 5)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()
