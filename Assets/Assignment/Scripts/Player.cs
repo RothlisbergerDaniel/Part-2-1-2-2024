@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public float speed = 3;
     Rigidbody2D rb;
     Animator animator;
+
+    bool collected = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,5 +40,11 @@ public class Player : MonoBehaviour
         }
 
         rb.MovePosition(rb.position + movement.normalized * speed * Time.deltaTime);
+    }
+
+    void collect()
+    {
+        collected = true;
+        animator.SetTrigger("Pickup");
     }
 }
