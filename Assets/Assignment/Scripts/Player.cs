@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
 
-    bool collected = false;
+    public bool collected = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,5 +46,14 @@ public class Player : MonoBehaviour
     {
         collected = true;
         animator.SetTrigger("Pickup");
+    }
+
+    void deposit()
+    {
+        if (collected)
+        {
+            collected = false;
+            animator.SetTrigger("Deposit");
+        }
     }
 }

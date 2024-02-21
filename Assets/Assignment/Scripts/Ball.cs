@@ -7,10 +7,13 @@ public class Ball : MonoBehaviour
 {
 
     Rigidbody2D rb;
+    public Vector3 spawn = new Vector3(6, 0, 0);
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spawn = new Vector3(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5), 0); //have to include UnityEngine for some reason, random spawn each time
+        transform.position = spawn; //reset ball position
     }
 
     // Update is called once per frame
