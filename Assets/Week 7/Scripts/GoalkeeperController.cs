@@ -9,10 +9,11 @@ public class GoalkeeperController : MonoBehaviour
     Vector2 direction;
     float dist;
     public float radius;
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {
-        rb = goalkeeper.GetComponent<Rigidbody2D>();
+        rb = goalkeeper.GetComponent<Rigidbody2D>(); //this is completely unnecessary
     }
 
     // Update is called once per frame
@@ -34,11 +35,11 @@ public class GoalkeeperController : MonoBehaviour
     {
         if (dist / 2 < radius)
         {
-            rb.position = (Vector2)transform.position - direction * dist / 2;
+            rb.position = Vector2.MoveTowards(rb.position, (Vector2)transform.position - direction * dist / 2, speed);
         }
         else
         {
-            rb.position = (Vector2)transform.position - direction * radius;
+            rb.position = Vector2.MoveTowards(rb.position, (Vector2)transform.position - direction * radius, speed);
         }
     }
 }

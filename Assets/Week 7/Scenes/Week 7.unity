@@ -4226,6 +4226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goalkeeper: {fileID: 921940358721699913}
   radius: 2
+  speed: 0.1
 --- !u!4 &1856704435
 Transform:
   m_ObjectHideFlags: 0
